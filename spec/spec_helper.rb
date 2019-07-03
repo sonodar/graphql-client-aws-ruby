@@ -7,7 +7,7 @@ require 'simplecov'
 require 'simplecov-console'
 SimpleCov.start do
   filters.clear
-  add_filter ['/vendor/', '/spec/', '/.rbenv/']
+  add_filter ['/vendor/', '/spec/', '/.rbenv/', '/.rvm/']
   SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new [
     SimpleCov::Formatter::HTMLFormatter,
     SimpleCov::Formatter::Console,
