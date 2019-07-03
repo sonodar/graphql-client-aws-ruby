@@ -1,8 +1,3 @@
-if ENV['CI']
-  require 'coveralls'
-  Coveralls.wear!
-end
-
 require 'simplecov'
 require 'simplecov-console'
 SimpleCov.start do
@@ -12,6 +7,11 @@ SimpleCov.start do
     SimpleCov::Formatter::HTMLFormatter,
     SimpleCov::Formatter::Console,
   ]
+end
+
+if ENV['CI']
+  require 'coveralls'
+  Coveralls.wear!
 end
 
 require 'graphql/client/aws'
