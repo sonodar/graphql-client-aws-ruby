@@ -15,7 +15,7 @@ before_script:
   - gem update --system
   - gem update --remote bundler
 script:
-  - bundle exec rspec
+  - cd ruby; bundle exec rspec
 #deploy:
 #  provider: rubygems
 #  gem: aws-ssm-env
