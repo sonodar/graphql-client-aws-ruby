@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/sonodar/graphql-client-aws-ruby.svg?branch=master)](https://travis-ci.org/sonodar/graphql-client-aws-ruby)
+[![Coverage Status](https://coveralls.io/repos/github/sonodar/graphql-client-aws-ruby/badge.svg?branch=master)](https://coveralls.io/github/sonodar/graphql-client-aws-ruby?branch=master)
+[![Gem Version](https://badge.fury.io/rb/graphql-client-aws.svg)](https://badge.fury.io/rb/graphql-client-aws)
+
 # graphql-client-aws
 
 `graphql-client`([github/graphql-client](https://github.com/github/graphql-client)) を AWS AppSync に対応させるための gem です。
