@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'graphql'
 
 Query = GraphQL.parse <<-'GRAPHQL'
     query list {
