@@ -1,0 +1,61 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://hoge.appsync-api.ap-northeast-1.amazonaws.com/graphql
+    body:
+      encoding: UTF-8
+      string: '{"query":"query list {\n  listMyCustomTypes {\n    items {\n      id\n      title\n      content\n    }\n  }\n}","operationName":"list"}'
+    headers:
+      Accept-Encoding:
+        - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+        - application/json
+      User-Agent:
+        - Ruby
+      X-Amz-Date:
+        - 20190704T023505Z
+      X-Amz-Content-Sha256:
+        - 7fda7be26cae2ee46b270c4f856ef7hoge28e4631fb55d2e41da8a67480d11cc28e2
+      Authorization:
+        - AWS4-HMAC-SHA256 Credential=hoge/20190704/ap-northeast-1/appsync/aws4_request,
+          SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=282dfa2fd83625007e02492c0hogebe776c316cb12df6fdaa2cefb33637e98d
+      Content-Type:
+        - application/graphql
+  response:
+    status:
+      code: 403
+      message: Forbidden
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '148'
+      Connection:
+      - keep-alive
+      Date:
+      - Thu, 04 Jul 2019 02:35:09 GMT
+      X-Amzn-Requestid:
+        - b9a9233a-3c76-hoge-88f2-c125fe879883
+      X-Amzn-Errortype:
+      - UnrecognizedClientException
+      X-Cache:
+      - Error from cloudfront
+      Via:
+      - 1.1 hoge.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - NRT57-C2
+      X-Amz-Cf-Id:
+        - nFv6-dydqghinxo6diZjg6jKpRN1w1Ecdhogeo63D7e53h51nsJf0JLkng==
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "errors" : [ {
+            "errorType" : "UnrecognizedClientException",
+            "message" : "The security token included in the request is invalid."
+          } ]
+        }
+    http_version: 
+  recorded_at: Thu, 04 Jul 2019 02:35:05 GMT
+recorded_with: VCR 5.0.0

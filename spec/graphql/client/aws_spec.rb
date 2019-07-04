@@ -1,24 +1,33 @@
 require 'spec_helper'
 
+Query = GraphQL.parse <<-'GRAPHQL'
+    query list {
+      listMyCustomTypes {
+        items {
+          id
+          title
+          content
+        }
+      }
+    }
+GRAPHQL
+
 describe GraphQL::Client::Aws do
   let(:region) { 'ap-northeast-1' }
-  let(:access_key_id) { ENV.fetch('AWS_ACCESS_KEY_ID') { 'access_key_id' } }
-  let(:secret_access_key) { ENV.fetch('AWS_SECRET_ACCESS_KEY') { 'secret_access_key' } }
   let(:signer_opts) {
     {
         region: region,
-        access_key_id: access_key_id,
-        secret_access_key: secret_access_key
+        access_key_id: 'hoge',
+        secret_access_key: 'secret_access_key'
     }
   }
-  let(:uri) { 'https://fmcrcnckrndolhucaegjfdqt54.appsync-api.ap-northeast-1.amazonaws.com/graphql' }
-  let(:instance) { described_class.new(uri,signer_opts) }
-
-  subject { described_class.new(uri,signer_opts) }
+  let(:uri) { 'https://hoge.appsync-api.ap-northeast-1.amazonaws.com/graphql' }
+  let(:instance) { described_class.new(uri, signer_opts) }
 
   describe 'class' do
     subject { instance }
     it { is_expected.to be_a_kind_of GraphQL::Client::HTTP }
+    it { is_expected.to be_an_instance_of GraphQL::Client::Aws }
   end
 
   describe 'uri attribute' do
@@ -26,13 +35,21 @@ describe GraphQL::Client::Aws do
     it { is_expected.to eq uri }
   end
 
-  describe 'connection' do
-    subject { instance.connection }
-    it { is_expected.to be_an_instance_of GraphQL::Client::SignedHTTP }
+  describe 'execute', :vcr do
+    context 'when authorized' do
+      subject do
+        res = instance.execute(document: Query, operation_name: 'list')
+        res['data']['listMyCustomTypes']['items'].first
+      end
+      it { is_expected.to match({ 'title' => 'テストタイトル', 'content' => 'テストです', 'id' => '12345' }) }
+    end
 
-    describe 'signer' do
-      subject { instance.connection.signer }
-      it { is_expected.to be_an_instance_of Aws::Sigv4::Signer }
+    context 'when not authorized' do
+      subject do
+        res = instance.execute(document: Query, operation_name: 'list')
+        res['errors'].first
+      end
+      it { is_expected.to match({ 'message' => '403 Forbidden' }) }
     end
   end
 end
