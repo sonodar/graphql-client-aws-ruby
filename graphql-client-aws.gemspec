@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 Gem::Specification.new do |s|
   s.name = 'graphql-client-aws'
-  s.version = '1.0.1'
+  s.version = '1.0.2'
   s.summary = 'GraphQL Client Adapter for AWS AppSync IAM Authorization'
   s.description = 'A Ruby library for declaring, composing and executing GraphQL queries for AWS AppSync IAM Authorization'
   s.homepage = 'https://github.com/sonodar/graphql-client-aws-ruby'
@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'vcr'
   s.add_development_dependency 'webmock'
 
-  s.required_ruby_version = '>= 2.3.0'
+  s.required_ruby_version = '>= 2.4'
 
   s.email = 'ryoheisonoda@outlook.com'
   s.authors = 'sonodar'
